@@ -33,7 +33,6 @@ public final class Machine {
     private List<Instruction> prog;
 
     // The registers of the SML machine
-
     @Getter
     @Setter
     private Registers registers;

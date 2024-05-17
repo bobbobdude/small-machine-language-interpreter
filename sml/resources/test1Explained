@@ -1,0 +1,9 @@
+L1 lin 10 66 // This stores the value 66 in the register 10
+Thing lin 1 10 // This stores the value 10 in the register 1
+L2 add 10 10 10 // This adds the value of register 10 to itself, storing the result in register 10 (66 + 66)
+L3 mul 10 1 10 // This multiplies the values in register 1 and 10 together (132 x 10)
+L4 out 10 // This prints out the current value of register 10 (which is 1320)
+L5 bnz 5 L1 // This checks if register 5 does not contain zero, if it does not contain zero it jumps up to the first instruction but as 5 is never accessed it will always contain the
+               default value of zero meaning the program only ever runs once
+
+This results in the value of 10 being stored in register 1 and the value of 1320 being stored in register 10

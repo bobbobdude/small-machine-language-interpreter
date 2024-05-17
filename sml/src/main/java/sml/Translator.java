@@ -12,7 +12,7 @@ import java.util.Scanner;
 
 import lombok.extern.java.Log;
 
-import sml.instructions.AddInstruction;
+import sml.instructions.*;
 
 /**
  * This class is the main translation mechanism.
@@ -93,19 +93,51 @@ public final class Translator {
         }
         var opCode = scan();
 
-        switch (opCode) {
+/*        switch (opCode) {
             case "add" -> {
                 r = scanInt();
                 s1 = scanInt();
                 s2 = scanInt();
                 return new AddInstruction(label, r, s1, s2);
             }
+            case "sub" -> {
+                r = scanInt();
+                s1 = scanInt();
+                s2 = scanInt();
+                return new SubInstruction(label, r, s1, s2);
+            }
+            case "lin" -> {
+                r = scanInt();
+                s1 = scanInt();
+                return new LinInstruction(label, r, s1);
+            }
+            case "out" -> {
+                r = scanInt();
+                return new OutInstruction(label, r);
+            }
+            case "mul" -> {
+                r = scanInt();
+                s1 = scanInt();
+                s2 = scanInt();
+                return new MulInstruction(label, r, s1, s2);
+            }
+            case "div" -> {
+                r = scanInt();
+                s1 = scanInt();
+                s2 = scanInt();
+                return new DivInstruction(label, r, s1, s2);
+            }
+            case "bnz" -> {
+                r = scanInt();
+                String labelToJump = scan();
+                return new BnzInstruction(label, r, labelToJump);
+            }
 
             // TODO: You have to write code here for the other instructions.
 
             default -> System.out.println("Unknown instruction: " + opCode);
-        }
-        return null; // FIX THIS
+        }*/
+        return returnInstruction(label, opCode); // FIX THIS
 
         // In the second phase you will replace the switch with...
         // return returnInstruction(label, opCode);
@@ -163,7 +195,7 @@ public final class Translator {
 
         // find the correct constructor
         Constructor cons = findConstructor(clazz);
-        var objArray = argsForConstructor(null, label);
+        var objArray = argsForConstructor(cons, label);
 
         try {
             return (Instruction) cons.newInstance(objArray); // create an instance with the ctor args
@@ -175,13 +207,32 @@ public final class Translator {
 
     private Constructor findConstructor(Class cl) {
         Constructor cons = null;
+        cons = cl.getDeclaredConstructors()[0];
         // TODO
-        return null;
+        return cons;
     }
 
     private Object[] argsForConstructor(Constructor cons, String label) {
-        Object[] argsArray = null;
+        Class[] paramTypes = cons.getParameterTypes();
+        Object[] argsArray = new Object[paramTypes.length];
+        argsArray[0] = label;
+        int i = 1;
+
+        for (int j = 1; j < paramTypes.length; j++){
+            if (paramTypes[j] == int.class){
+                argsArray[i] = scanInt();
+            }
+            else if(paramTypes[j] == String.class){
+                argsArray[i] = scan();
+            }
+            else {
+                throw new IllegalArgumentException("Has to be a string or an integer");
+            }
+            i++;
+        }
+
+
         // TODO
-        return null;
+        return argsArray;
     }
 }

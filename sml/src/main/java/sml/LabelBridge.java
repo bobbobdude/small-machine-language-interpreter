@@ -18,6 +18,21 @@ import static lombok.AccessLevel.PUBLIC;
 
 public class LabelBridge {
     // TODO
+    private final Labels labels;
 
+    public Labels getLabels() {
+        return labels;
+    }
+
+    public int indexOf(String label) {
+        return labels.indexOf(label);
+    }
+
+    public int addLabel(String label) {
+        return labels.addLabel(label);
+    }
+    public void reset(){
+        labels.reset();
+    }
 
 }

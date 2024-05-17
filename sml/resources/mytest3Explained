@@ -1,0 +1,8 @@
+f0 lin 20 1 //Stores the integer 1 in register 20
+f1 lin 21 1 //Stores the integer 1 in register 21
+f3 add 20 20 21 //Adds register 20 and 21 and stores it in register 20 (so 1 + 1 = 2)
+f4 out 20 //Should print out the value of register 20 (which at this point should be 2)
+f5 sub 20 20 21 //Should minus register 21 from 20 and store it in register 20 (so 2 - 1 = 1)
+f6 out 20 //Should print out the value of 1 that is stored in register 20 (which at this point should be 1)
+
+So finally register 20 should be 1 and register 21 should also be 1.
