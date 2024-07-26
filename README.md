@@ -28,7 +28,7 @@ My interpreter:
 
 1. Reads the file name containing the program from the command line (via String[] args and the Main class).
 
-2. Reads the program from the file and translate it into the internal form.
+2. Reads the program from the file and translates it into the internal form.
 
 3. Prints the program out.
 
